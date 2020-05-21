@@ -20,7 +20,7 @@ class opcuastackConan(ConanFile):
     name = "opcuastack"
     version = "3.8.1"
     commit = version
-    license = "MIT"
+    license = "Apache 2.0"
     author = "Vladislav Troinich antlad@icloud.com"
     url = "https://github.com/ASNeG/OpcUaStack"
     description = "ASNeG OPC UA Stack is an open source framework for development and distribution of OPC UA client\server applications"
