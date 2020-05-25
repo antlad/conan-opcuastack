@@ -52,8 +52,11 @@ class opcuastackConan(ConanFile):
     def package(self):
         cmake = self._configure_cmake()
         cmake.install()
-
-        self.copy("*.h", dst="include", src="./src/", keep_path=True)
+        
+        install_path = cmake.definitions.get("CMAKE_INSTALL_PREFIX")
+        self.run("ls {}/include/OpcUaStack3/OpcUaStackCore/Base/".format(install_path))
+        self.copy("*.h", dst="include/", src="{}/include/OpcUaStack3/".format(install_path), keep_path=True)
+        self.copy("*.txx", dst="include/", src="{}/include/OpcUaStack3/".format(install_path), keep_path=True)
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
@@ -62,5 +65,5 @@ class opcuastackConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ['OpcUaStackClient', 'OpcUaStackPubSub', 'OpcUaStackCore', "OpcUaStackServer"]
-        self.cpp_info.includedirs = ['include/OpcUaStack3']
+        self.cpp_info.includedirs = ['./include/']
 
