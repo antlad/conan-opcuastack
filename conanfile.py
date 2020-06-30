@@ -31,7 +31,7 @@ class opcuastackConan(ConanFile):
     generators = "cmake"
     build_policy = "missing"
     requires = (
-        "OpenSSL/1.1.1c@conan/stable",
+        "openssl/1.1.1d",
         "boost/1.71.0@conan/stable"
     )
 
