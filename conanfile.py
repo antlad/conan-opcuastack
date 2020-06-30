@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 
 prefix_patch = '''diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index f74b8d16..b489171a 100644
+index f74b8d16..c398da6c 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -198,7 +198,7 @@ find_package (Threads)
@@ -10,10 +10,79 @@ index f74b8d16..b489171a 100644
  # -----------------------------------------------------------------------------
  # -----------------------------------------------------------------------------
 -set (INSTALL_PREFIX "/usr")        
-+set (INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
++set (INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})        
  if (WIN32)
      if (MSVC)
          set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+diff --git a/src/OpcUaProjectBuilder/ProjectTemplate/src/ProjectName/CMakeLists.txt b/src/OpcUaProjectBuilder/ProjectTemplate/src/ProjectName/CMakeLists.txt
+index 6e76b56c..e7ada8ec 100644
+--- a/src/OpcUaProjectBuilder/ProjectTemplate/src/ProjectName/CMakeLists.txt
++++ b/src/OpcUaProjectBuilder/ProjectTemplate/src/ProjectName/CMakeLists.txt
+@@ -48,7 +48,7 @@ file(
+ )
+ 
+ add_library(
+-    ProjectName SHARED
++    ProjectName
+     ${ProjectName_SRC}
+ )
+ 
+diff --git a/src/OpcUaStackClient/CMakeLists.txt b/src/OpcUaStackClient/CMakeLists.txt
+index 651e649d..96aad9b5 100644
+--- a/src/OpcUaStackClient/CMakeLists.txt
++++ b/src/OpcUaStackClient/CMakeLists.txt
+@@ -16,8 +16,7 @@ file(
+ )
+ 
+ add_library(
+-    OpcUaStackClient 
+-    SHARED 
++    OpcUaStackClient  
+     ${OpcUaStackClient_SRC}
+ )
+ 
+diff --git a/src/OpcUaStackCore/CMakeLists.txt b/src/OpcUaStackCore/CMakeLists.txt
+index 904bc49f..c8086a40 100644
+--- a/src/OpcUaStackCore/CMakeLists.txt
++++ b/src/OpcUaStackCore/CMakeLists.txt
+@@ -17,8 +17,7 @@ file(
+ )
+ 
+ add_library(
+-    OpcUaStackCore 
+-    SHARED 
++    OpcUaStackCore  
+     ${OpcUaStackCore_SRC}
+ )
+ 
+diff --git a/src/OpcUaStackPubSub/CMakeLists.txt b/src/OpcUaStackPubSub/CMakeLists.txt
+index 181f5370..f9956089 100644
+--- a/src/OpcUaStackPubSub/CMakeLists.txt
++++ b/src/OpcUaStackPubSub/CMakeLists.txt
+@@ -17,8 +17,7 @@ file(
+ )
+ 
+ add_library(
+-    OpcUaStackPubSub 
+-    SHARED 
++    OpcUaStackPubSub  
+     ${OpcUaStackPubSub_SRC}
+ )
+ 
+diff --git a/src/OpcUaStackServer/CMakeLists.txt b/src/OpcUaStackServer/CMakeLists.txt
+index a7eb71fa..f24623fe 100644
+--- a/src/OpcUaStackServer/CMakeLists.txt
++++ b/src/OpcUaStackServer/CMakeLists.txt
+@@ -16,8 +16,7 @@ file(
+ )
+ 
+ add_library(
+-    OpcUaStackServer 
+-    SHARED 
++    OpcUaStackServer
+     ${OpcUaStackServer_SRC}
+ )
+ 
 '''
 
 class opcuastackConan(ConanFile):
