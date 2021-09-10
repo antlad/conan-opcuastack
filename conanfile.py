@@ -2,9 +2,26 @@ from conans import ConanFile, CMake, tools
 
 
 prefix_patch = '''diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index f74b8d16..c398da6c 100644
+index f74b8d16..589e6e74 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
+@@ -167,11 +167,11 @@ message(STATUS "  libraries: ${Boost_LIBRARIES}")
+ #
+ # -----------------------------------------------------------------------------
+ # -----------------------------------------------------------------------------
+-find_package(
+-    OpenSSL 
+-    "${OPENSSL_VERSION_MAJOR}.${OPENSSL_VERSION_MINOR}.${OPENSSL_VERSION_PATCH}" 
+-    REQUIRED
+-)
++#find_package(
++#    OpenSSL 
++#    "${OPENSSL_VERSION_MAJOR}.${OPENSSL_VERSION_MINOR}.${OPENSSL_VERSION_PATCH}" 
++#    REQUIRED
++#)
+ 
+ message(STATUS "OpenSSL library")
+ message(STATUS "  found: ${OPENSSL_FOUND}")
 @@ -198,7 +198,7 @@ find_package (Threads)
  #
  # -----------------------------------------------------------------------------
@@ -27,62 +44,64 @@ index 6e76b56c..e7ada8ec 100644
      ${ProjectName_SRC}
  )
  
-diff --git a/src/OpcUaStackClient/CMakeLists.txt b/src/OpcUaStackClient/CMakeLists.txt
-index 651e649d..96aad9b5 100644
---- a/src/OpcUaStackClient/CMakeLists.txt
-+++ b/src/OpcUaStackClient/CMakeLists.txt
-@@ -16,8 +16,7 @@ file(
- )
- 
- add_library(
--    OpcUaStackClient 
--    SHARED 
-+    OpcUaStackClient  
-     ${OpcUaStackClient_SRC}
- )
- 
 diff --git a/src/OpcUaStackCore/CMakeLists.txt b/src/OpcUaStackCore/CMakeLists.txt
-index 904bc49f..c8086a40 100644
+index 904bc49f..489b0ea5 100644
 --- a/src/OpcUaStackCore/CMakeLists.txt
 +++ b/src/OpcUaStackCore/CMakeLists.txt
-@@ -17,8 +17,7 @@ file(
- )
+@@ -18,7 +18,6 @@ file(
  
  add_library(
--    OpcUaStackCore 
+     OpcUaStackCore 
 -    SHARED 
-+    OpcUaStackCore  
      ${OpcUaStackCore_SRC}
  )
  
 diff --git a/src/OpcUaStackPubSub/CMakeLists.txt b/src/OpcUaStackPubSub/CMakeLists.txt
-index 181f5370..f9956089 100644
+index 181f5370..d6d08991 100644
 --- a/src/OpcUaStackPubSub/CMakeLists.txt
 +++ b/src/OpcUaStackPubSub/CMakeLists.txt
-@@ -17,8 +17,7 @@ file(
- )
+@@ -18,7 +18,6 @@ file(
  
  add_library(
--    OpcUaStackPubSub 
+     OpcUaStackPubSub 
 -    SHARED 
-+    OpcUaStackPubSub  
      ${OpcUaStackPubSub_SRC}
  )
  
 diff --git a/src/OpcUaStackServer/CMakeLists.txt b/src/OpcUaStackServer/CMakeLists.txt
-index a7eb71fa..f24623fe 100644
+index a7eb71fa..7a1efc63 100644
 --- a/src/OpcUaStackServer/CMakeLists.txt
 +++ b/src/OpcUaStackServer/CMakeLists.txt
-@@ -16,8 +16,7 @@ file(
- )
+@@ -17,7 +17,6 @@ file(
  
  add_library(
--    OpcUaStackServer 
+     OpcUaStackServer 
 -    SHARED 
-+    OpcUaStackServer
      ${OpcUaStackServer_SRC}
  )
  
+diff --git a/tst/CMakeLists.txt b/tst/CMakeLists.txt
+index 828da666..dcafdcb4 100644
+--- a/tst/CMakeLists.txt
++++ b/tst/CMakeLists.txt
+@@ -19,11 +19,11 @@ set(OPENSSL_VERSION_PATCH "0" CACHE STRING "patch version")
+ 
+ set(OPCUASTACK_INSTALL_PREFIX "/" CACHE PATH "opc ua stack intallation prefix")
+ 
+-find_package(
+-    OpenSSL 
+-    "${OPENSSL_VERSION_MAJOR}.${OPENSSL_VERSION_MINOR}.${OPENSSL_VERSION_PATCH}" 
+-    REQUIRED
+-)
++#find_package(
++#    OpenSSL 
++#    "${OPENSSL_VERSION_MAJOR}.${OPENSSL_VERSION_MINOR}.${OPENSSL_VERSION_PATCH}" 
++#    REQUIRED
++#)
+ 
+ # -----------------------------------------------------------------------------
+ # -----------------------------------------------------------------------------
+
 '''
 
 class opcuastackConan(ConanFile):
