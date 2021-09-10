@@ -101,7 +101,7 @@ class opcuastackConan(ConanFile):
     build_policy = "missing"
     requires = (
         "openssl/1.1.1d",
-        "boost/1.71.0@conan/stable"
+        "boost/1.76.0"
     )
 
     def source(self):
