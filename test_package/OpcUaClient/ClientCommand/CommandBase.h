@@ -22,6 +22,7 @@
 #include <stdint.h>
 #include <vector>
 #include <map>
+#include <string>
 #include "OpcUaClient/ClientCommand/ParameterFlags.h"
 
 namespace OpcUaClient
