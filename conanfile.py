@@ -153,9 +153,11 @@ class opcuastackConan(ConanFile):
     topics = ("opcua")
     settings = "os", "compiler", "build_type", "arch"
     options = {
-        "shared": [True, False]
+        "shared": [True, False],
+        "fPIC": [True, False]
         }
     default_options = {
+        "fPIC": True,
         "shared": False,
          "openssl:shared": False, 
          "boost:shared": False,
