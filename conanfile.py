@@ -158,10 +158,19 @@ class opcuastackConan(ConanFile):
         }
     default_options = {
         "fPIC": True,
-        "shared": False,
-         "openssl:shared": False, 
-         "boost:shared": False,
-         "boost:fPIC": True,
+        "shared": True,
+        "openssl:shared": False, 
+        "boost:shared": False,
+        "boost:fPIC": True,
+        "boost:fPIC": True,
+        "boost:shared": False,
+        "boost:without_locale": True,
+        "boost:without_python": True,
+        "boost:without_log": True,
+        "boost:without_mpi": True,
+        "boost:without_graph_parallel": True,
+        "boost:without_fiber": True,
+        "boost:without_graph": True,
         }
     generators = "cmake"
     build_policy = "missing"

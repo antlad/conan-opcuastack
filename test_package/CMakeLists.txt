@@ -1,7 +1,15 @@
 cmake_minimum_required(VERSION 3.0)
 project	(ASNeGDemo CXX)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_VERBOSE_MAKEFILE ON)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+#set(Boost_USE_STATIC_LIBS OFF)
+#set(Boost_USE_MULTITHREADED ON)
+#set(Boost_USE_STATIC_RUNTIME OFF)
+#add_definitions(-DBOOST_ALL_DYN_LINK)
+
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -62,6 +70,11 @@ add_executable(
     OpcUaClient_check
     ${OpcUaClient_SRC}
 )
+
+#list(REMOVE_ITEM CONAN_LIBS "OpcUaStackCore")
+#list(REMOVE_ITEM CONAN_LIBS "OpcUaStackPubSub")
+#message("=========================================>\n=========================================>\n=========================================>\n${CONAN_LIBS}")
+
 
 target_link_libraries(OpcUaClient_check ${CONAN_LIBS})
 set_target_properties(OpcUaClient_check PROPERTIES LINKER_LANGUAGE CXX)

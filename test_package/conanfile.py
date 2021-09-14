@@ -4,6 +4,16 @@ import os
 class opcuastackTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False]
+        }
+    default_options = {
+        "fPIC": True,
+        "shared": False,
+        # "opcuastack:shared": False,
+        # "opcuastack:fPIC": True,
+        }
 
     def build(self):
         cmake = CMake(self)
